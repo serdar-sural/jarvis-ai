@@ -4,7 +4,7 @@ from openai import (
     AuthenticationError,
     RateLimitError
 )
-from prompt_loader import get_system_prompt
+from core.prompt_loader import get_system_prompt
 from dotenv import load_dotenv
 import os
 
