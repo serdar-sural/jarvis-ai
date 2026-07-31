@@ -6,10 +6,10 @@ from openai import (
 )
 from core.prompt_loader import get_system_prompt
 from dotenv import load_dotenv
+from config import settings
 import os
 
 client = None
-MODEL_NAME = "gpt-5.6-terra"
 messages = []
 
 def initialize_ai():
@@ -29,7 +29,7 @@ def generate_response(chat_message):
     add_message("user", chat_message)
     try:
         response = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=settings.MODEL_NAME,
             messages=messages
         )
         assistant_message = response.choices[0].message.content
