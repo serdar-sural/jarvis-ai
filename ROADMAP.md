@@ -1,14 +1,14 @@
 # Roadmap
 
-This document outlines the planned direction and future development of Jarvis AI.
+This document outlines the planned direction and long-term development of **Jarvis AI**.
 
-The roadmap is intended to provide an overview of upcoming features and long-term project goals. Priorities may change as the project evolves.
+The roadmap provides an overview of completed milestones, current priorities, and future goals. It is a living document and will evolve as the project grows.
 
 ---
 
 # Current Version
 
-**Version:** 1.0.0
+**Version:** 0.2.0
 
 **Status:** Active Development
 
@@ -18,48 +18,62 @@ The roadmap is intended to provide an overview of upcoming features and long-ter
 
 ## Foundation
 
-- Project structure
+- Initial project structure
+- Modular architecture
 - OpenAI API integration
 - Runtime conversation memory
-- Modular architecture
 - AI core module
 - Chat module
 - Startup module
-- Custom system prompt
 - Git version control
 - GitHub repository
 - Professional README
 - CHANGELOG
+- ROADMAP
 
 ---
 
-# Upcoming
+## Architecture
 
-## Documentation
-
-- LICENSE
-- Contribution guidelines
-
----
-
-## Refactoring
-
-- Move the system prompt into external files
-- Create a prompt loader
-- Introduce a centralized configuration system
-- Improve project structure
-- Reduce code duplication
+- External system prompt
+- Prompt loader
+- Centralized settings module
+- Dedicated `prompts` directory
+- Dedicated `config` directory
+- Reliable prompt loading using `pathlib`
+- Separation of Concerns
 
 ---
 
-## Core Features
+## Development Workflow
+
+- Feature branch workflow
+- Refactor branch workflow
+- Bugfix branch workflow
+- Pull Request workflow
+- Code review process
+- Documentation workflow
+
+---
+
+# Current Priorities
+
+The following features are planned for the next development phase.
+
+## Core
+
+- Logging system
+- Improved error handling
+- Configuration expansion
+- Multiple AI model support
+
+---
+
+## Memory
 
 - Persistent conversation history
 - Long-term AI memory
 - Conversation management
-- Multiple AI model support
-- Error handling improvements
-- Logging system
 
 ---
 
@@ -76,9 +90,29 @@ The roadmap is intended to provide an overview of upcoming features and long-ter
 ## Data
 
 - Database integration
-- User profiles
-- Configuration persistence
 - Local data storage
+- Configuration persistence
+- User profiles
+
+---
+
+## Security
+
+- User authentication
+- Login system
+- Session management
+- Access control
+
+---
+
+## Deployment
+
+- Desktop application
+- Web application
+- REST API
+- Docker support
+- Cloud deployment
+- Domain integration
 
 ---
 
@@ -86,7 +120,6 @@ The roadmap is intended to provide an overview of upcoming features and long-ter
 
 - Automated testing
 - Continuous Integration (CI)
-- Docker support
 - Plugin architecture
 - API documentation
 - Code quality improvements
@@ -95,19 +128,27 @@ The roadmap is intended to provide an overview of upcoming features and long-ter
 
 # Long-Term Vision
 
-Jarvis AI aims to become a modular and extensible AI assistant that demonstrates professional software engineering practices while serving as a long-term learning project.
+Jarvis AI aims to become a professional, modular, and extensible AI assistant while serving as a long-term AI Engineering and Software Engineering learning project.
 
-The primary goals are:
+The long-term vision includes:
 
 - Clean Architecture
 - Modular Design
-- Maintainable Code
 - Scalable Project Structure
 - Professional Development Workflow
+- Desktop Application
+- Web Application
+- User Authentication
+- Cloud Deployment
+- AI Memory
+- Plugin System
+- Voice Assistant
 - Continuous Learning
 
 ---
 
 # Notes
 
-This roadmap is a living document and will be updated as the project grows.
+This roadmap reflects the current development direction.
+
+Priorities may change as the project evolves and new ideas emerge.

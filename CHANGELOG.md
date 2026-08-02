@@ -2,34 +2,65 @@
 
 All notable changes to this project will be documented in this file.
 
-This project follows **Semantic Versioning**.
-
-The format is based on **Keep a Changelog**.
+The project follows **Semantic Versioning** and uses the **Keep a Changelog** format.
 
 ---
 
-## [1.0.0] - 2026-07-28
+## [Unreleased]
+
+### Documentation
+
+- Updated README to reflect the current project architecture.
+- Improved project documentation.
+- Updated roadmap and project structure.
+
+---
+
+## [0.2.0] - 2026-08-03
+
+### Added
+
+- External system prompt (`system_prompt.md`)
+- Prompt loader module
+- Centralized application settings module (`settings.py`)
+- Dedicated `prompts` directory
+- Dedicated `config` directory
+- Professional documentation workflow
+
+### Changed
+
+- Moved the system prompt out of the source code into an external Markdown file.
+- Replaced hardcoded prompt loading with `prompt_loader.py`.
+- Moved AI model configuration into the centralized settings module.
+- Improved project architecture by separating prompts and configuration.
+- Replaced relative prompt paths with `pathlib` for reliable file loading.
+- Improved overall project maintainability.
+
+### Fixed
+
+- Fixed prompt loading when starting the application from different working directories.
+
+---
+
+## [0.1.0] - 2026-07-28
 
 ### Added
 
 - Initial project structure
 - OpenAI API integration
 - Runtime conversation memory
-- Modular project architecture
 - AI core module
 - Chat module
 - Startup module
-- Custom system prompt
-- Professional README
+- Modular architecture
+- Git version control
 - GitHub repository
-- Git workflow using feature branches
-- Initial project documentation
-
-### Changed
-
-- Improved README formatting and markdown rendering
+- Initial README
+- Initial ROADMAP
+- Initial CHANGELOG
+- Custom system prompt
 
 ### Security
 
 - Added `.gitignore`
-- Protected environment variables by excluding the `.env` file from version control
+- Excluded `.env` from version control
