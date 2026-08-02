@@ -1,15 +1,30 @@
 # Jarvis AI
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
-![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen)
+![Version](https://img.shields.io/badge/Version-0.2.0-brightgreen)
 ![Status](https://img.shields.io/badge/Status-Active_Development-orange)
 ![Architecture](https://img.shields.io/badge/Architecture-Modular-blueviolet)
 ![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?logo=openai&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-A modular AI assistant built with Python and OpenAI, designed with a strong focus on software engineering, clean architecture, and long-term maintainability.
+A modular AI assistant built with Python and OpenAI, focusing on clean architecture, maintainability, and professional software engineering practices.
 
-Jarvis AI is a long-term learning and software engineering project. The goal is not only to build an intelligent AI assistant, but also to demonstrate professional development practices, clean architecture, and maintainable code.
+Jarvis AI is a long-term software engineering and AI engineering learning project. Rather than only building an intelligent assistant, the project focuses on understanding how professional software is designed, structured, tested, documented, and continuously improved.
+
+---
+
+# Project Goals
+
+The primary goals of this project are:
+
+- Learn Artificial Intelligence Engineering
+- Learn Professional Software Engineering
+- Build a scalable AI assistant
+- Practice Clean Architecture
+- Apply professional Git workflows
+- Follow modern development practices
+- Continuously improve code quality
+- Learn by understanding, not by copying
 
 ---
 
@@ -17,7 +32,7 @@ Jarvis AI is a long-term learning and software engineering project. The goal is 
 
 | Property | Value |
 |-----------|-------|
-| Version | **1.0.0** |
+| Version | **0.2.0** |
 | Status | **Active Development** |
 | Language | **Python** |
 | Architecture | **Modular** |
@@ -33,14 +48,16 @@ Current features include:
 - Modular project architecture
 - OpenAI Chat Completions integration
 - Runtime conversation memory
-- Custom system prompt
+- External system prompt
+- Prompt loader
+- Centralized settings module
 - Modular AI core
 - Modular chat system
 - Startup module
 - Professional project structure
 - Git version control
+- Feature branch workflow
 - Clean and maintainable codebase
-- Software engineering focused design
 
 ---
 
@@ -53,13 +70,19 @@ Jarvis_AI/
 ├── chat/
 │   └── chat.py
 ├── config/
+│   └── settings.py
 ├── core/
-│   └── ai.py
+│   ├── ai.py
+|   └── prompt_loader.py
 ├── data/
+├── prompts/
+│   └── system_prompt.md
 ├── ui/
 │   └── startup.py
 ├── .gitignore
 ├── README.md
+├── CHANGELOG.md
+├── ROADMAP.md
 └── main.py
 ```
 
@@ -69,17 +92,35 @@ Jarvis_AI/
 |---------|-------------|
 | **assets** | Images, icons and future project resources |
 | **chat** | Handles the chat loop and user interaction |
-| **config** | Reserved for future configuration files |
+| **config** | Global application settings |
 | **core** | Core AI logic and OpenAI communication |
 | **data** | Future application data and storage |
+| **prompts** | External AI prompt files |
 | **ui** | Startup process and future user interface |
 | **main.py** | Application entry point |
 
 ---
 
+# Architecture
+
+Jarvis AI follows the principle of **Separation of Concerns**.
+
+Each module has a single responsibility:
+
+- **chat** handles user interaction.
+- **core** contains AI logic.
+- **config** stores application settings.
+- **prompts** contains external AI prompts.
+- **ui** manages the user interface.
+- **data** is reserved for persistent storage.
+
+This modular architecture keeps the project maintainable, scalable, and easy to extend.
+
+---
+
 # Technologies
 
-This project currently uses:
+Current technologies:
 
 - Python
 - OpenAI API
@@ -87,7 +128,7 @@ This project currently uses:
 - Git
 - GitHub
 
-Additional technologies will be introduced as the project grows.
+Additional technologies will be introduced as the project evolves.
 
 ---
 
@@ -111,7 +152,7 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the project root:
+Create a `.env` file inside the project root:
 
 ```env
 OPENAI_API_KEY=your_api_key_here
@@ -127,46 +168,48 @@ python main.py
 
 # Usage
 
-After starting the application, Jarvis initializes the OpenAI client, loads the custom system prompt, and starts an interactive chat session.
+After starting the application, Jarvis initializes the OpenAI client, loads the external system prompt, applies the application settings, and starts an interactive chat session.
 
-The assistant keeps the conversation history during runtime and generates responses according to its system prompt.
+Conversation history is stored during runtime and continuously provided to the AI model.
 
 ---
 
-# Development Philosophy
+# Development Workflow
 
-Jarvis AI follows modern software engineering principles.
+Jarvis AI is developed using a professional Git workflow.
 
-The project emphasizes:
+Every change follows the same process:
 
-- Clean Architecture
-- Modular Design
-- Maintainable Code
-- Readability over Complexity
-- Continuous Refactoring
-- Version Control Best Practices
-- Learning Through Understanding
+- Create a dedicated branch
+- Implement the feature or fix
+- Test the application
+- Review the code
+- Update documentation when necessary
+- Create a Pull Request
+- Merge into `main`
+- Delete merged branches
 
-The goal is not only to build an AI assistant but also to grow as a professional software engineer.
+This workflow keeps the project clean, maintainable, and easy to follow.
 
 ---
 
 # Roadmap
 
-Planned features include:
+Upcoming major milestones include:
 
-- External prompt files
-- Configuration management
-- Settings management
-- Persistent conversation history
 - Logging system
+- Persistent conversation history
 - Long-term AI memory
-- Plugin architecture
+- Database integration
+- User authentication
+- Desktop application
+- Web application
 - Voice interaction
-- Graphical user interface
 - Automated testing
-- Continuous Integration (CI)
 - Docker support
+- Continuous Integration (CI)
+
+For the complete development plan, see **ROADMAP.md**.
 
 ---
 
@@ -178,25 +221,9 @@ Contribution guidelines will be added as the project evolves.
 
 ---
 
-# Changelog
-
-## Version 1.0.0
-
-### Added
-
-- Initial project structure
-- OpenAI integration
-- Runtime conversation memory
-- Custom system prompt
-- Modular architecture
-- GitHub repository
-- Initial project documentation
-
----
-
 # License
 
-This project will be released under the MIT License.
+This project is planned to be released under the MIT License.
 
 A dedicated `LICENSE` file will be added in a future release.
 
@@ -206,8 +233,8 @@ A dedicated `LICENSE` file will be added in a future release.
 
 **Serdar Süral**
 
-Developed as a long-term software engineering and AI engineering learning project.
+Developed as a long-term AI Engineering and Software Engineering learning project.
 
 ---
 
-⭐ If you like this project, consider giving it a star on GitHub.
+⭐ If you find this project interesting, consider giving it a star on GitHub.
