@@ -26,6 +26,10 @@ The project follows **Semantic Versioning** and uses the **Keep a Changelog** fo
 - Dedicated `prompts` directory
 - Dedicated `config` directory
 - Professional documentation workflow
+- Custom logging system
+- Logger class with centralized logging
+- Automatic log directory creation
+- Timestamped log entries
 
 ### Changed
 
@@ -35,6 +39,7 @@ The project follows **Semantic Versioning** and uses the **Keep a Changelog** fo
 - Improved project architecture by separating prompts and configuration.
 - Replaced relative prompt paths with `pathlib` for reliable file loading.
 - Improved overall project maintainability.
+- Replaced console print statements with the custom logger
 
 ### Fixed
 

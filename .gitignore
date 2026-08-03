@@ -5,6 +5,10 @@
 __pycache__/
 *.py[cod]
 
+# Log files
+logs/*
+!logs/.gitkeep
+
 # Virtual environments
 .venv/
 venv/

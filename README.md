@@ -52,12 +52,16 @@ Current features include:
 - Prompt loader
 - Centralized settings module
 - Modular AI core
+- Custom logging system
 - Modular chat system
 - Startup module
 - Professional project structure
 - Git version control
 - Feature branch workflow
 - Clean and maintainable codebase
+- Centralized logging system
+- Automatic log directory creation
+- Timestamped log entries
 
 ---
 
@@ -75,6 +79,8 @@ Jarvis_AI/
 │   ├── ai.py
 |   └── prompt_loader.py
 ├── data/
+├── logs/
+│   └── .gitkeep
 ├── prompts/
 │   └── system_prompt.md
 ├── ui/
@@ -98,6 +104,7 @@ Jarvis_AI/
 | **prompts** | External AI prompt files |
 | **ui** | Startup process and future user interface |
 | **main.py** | Application entry point |
+| **logs** | Application log files generated during runtime |
 
 ---
 
@@ -197,7 +204,6 @@ This workflow keeps the project clean, maintainable, and easy to follow.
 
 Upcoming major milestones include:
 
-- Logging system
 - Persistent conversation history
 - Long-term AI memory
 - Database integration

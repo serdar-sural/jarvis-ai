@@ -30,6 +30,7 @@ The roadmap provides an overview of completed milestones, current priorities, an
 - Professional README
 - CHANGELOG
 - ROADMAP
+- Custom logging system
 
 ---
 
@@ -62,7 +63,6 @@ The following features are planned for the next development phase.
 
 ## Core
 
-- Logging system
 - Improved error handling
 - Configuration expansion
 - Multiple AI model support
