@@ -40,6 +40,8 @@ The project follows **Semantic Versioning** and uses the **Keep a Changelog** fo
 - Replaced relative prompt paths with `pathlib` for reliable file loading.
 - Improved overall project maintainability.
 - Replaced console print statements with the custom logger
+- Improved the configuration package structure
+- Added module documentation for configuration modules
 
 ### Fixed
 
