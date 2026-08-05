@@ -47,3 +47,20 @@ class DatabaseManager:
         if not data_directory.exists():
             data_directory.mkdir(parents=True, exist_ok=True)
             logger.info("Created data directory.")
+
+    def disconnect(self) -> None:
+        """
+        Closes the connection to the application's database.
+        """
+
+        if self.connection is None:
+            logger.warning("No database connection to close.")
+            return
+
+        try:
+            self.connection.close()
+            self.connection = None
+            logger.info("Database connection closed.")
+        except sqlite3.Error as error:
+            logger.error(f"Failed to close database connection {self.database_path}: {error}")
+            raise
