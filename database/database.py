@@ -8,6 +8,7 @@ the application's database connection.
 import sqlite3
 import config.settings as settings
 from core.logger import logger
+from .schema import create_tables
 
 
 class DatabaseManager:
@@ -32,6 +33,7 @@ class DatabaseManager:
 
         try:
             self.connection = sqlite3.connect(self.database_path)
+            create_tables(self.connection)
             logger.info("Database connection established.")
         except sqlite3.Error as error:
             logger.error(f"Failed to connect to database {self.database_path}: {error}")
