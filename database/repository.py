@@ -41,3 +41,14 @@ class ConversationRepository:
         """
         cursor = self.connection.execute(select_conversation_query, (conversation_id,))
         return cursor.fetchone()
+
+    def get_all_conversations(self) -> list[tuple]:
+        """
+        Retrieves all conversations.
+        """
+        select_all_conversations_query = """
+        SELECT *
+        FROM conversations;
+        """
+        cursor = self.connection.execute(select_all_conversations_query)
+        return cursor.fetchall()
