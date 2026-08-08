@@ -23,8 +23,8 @@ def create_conversations_table(connection: sqlite3.Connection) -> None:
     CREATE TABLE IF NOT EXISTS conversations (
         id INTEGER PRIMARY KEY,
         title TEXT NOT NULL,
-        created_at TEXT NOT NULL,
-        updated_at TEXT NOT NULL
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
     """
     connection.execute(create_table_query)
