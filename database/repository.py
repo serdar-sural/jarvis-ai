@@ -29,4 +29,15 @@ class ConversationRepository:
         if conversation_id is None:
             raise RuntimeError("Failed to retrieve the last inserted conversation ID.")
         return conversation_id
-            
+
+    def get_conversation(self, conversation_id: int) -> tuple | None:
+        """
+        Retrieves a conversation by its ID.
+        """
+        select_conversation_query = """
+        SELECT *
+        FROM conversations
+        WHERE id = ?;
+        """
+        cursor = self.connection.execute(select_conversation_query, (conversation_id,))
+        return cursor.fetchone()
