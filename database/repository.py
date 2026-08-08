@@ -14,13 +14,19 @@ class ConversationRepository:
         """
         self.connection = connection
 
-    def create_conversation(self, title: str) -> None:
+    def create_conversation(self, title: str) -> int:
         """
         Creates a new conversation.
         """
         insert_conversation_query = """
         INSERT INTO conversations (title) VALUES (?);
         """
-        self.connection.execute(insert_conversation_query, (title,))
+        cursor = self.connection.execute(insert_conversation_query, (title,))
         self.connection.commit()
+
+        conversation_id = cursor.lastrowid
+
+        if conversation_id is None:
+            raise RuntimeError("Failed to retrieve the last inserted conversation ID.")
+        return conversation_id
             
