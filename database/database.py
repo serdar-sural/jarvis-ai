@@ -33,6 +33,7 @@ class DatabaseManager:
 
         try:
             self.connection = sqlite3.connect(self.database_path)
+            self.connection.execute("PRAGMA foreign_keys = ON;")
             create_tables(self.connection)
             logger.info("Database connection established.")
         except sqlite3.Error as error:
