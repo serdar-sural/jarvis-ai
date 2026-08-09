@@ -197,3 +197,25 @@ class MessageRepository:
             self._row_to_message(row)
             for row in cursor.fetchall()
         ]
+
+    def get_messages_by_conversation(self, conversation_id: int) -> list[Message]:
+        """
+        Retrieves all messages for a specific conversation.
+        """
+
+        select_messages_by_conversation_query = """
+        SELECT *
+        FROM messages
+        WHERE conversation_id = ?
+        ORDER BY created_at ASC;
+        """
+
+        cursor = self.connection.execute(
+            select_messages_by_conversation_query,
+            (conversation_id,)
+        )
+
+        return [
+            self._row_to_message(row)
+            for row in cursor.fetchall()
+        ]
