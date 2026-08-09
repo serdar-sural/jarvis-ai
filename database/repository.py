@@ -3,7 +3,7 @@ Database repositories for Jarvis AI.
 """
 
 import sqlite3
-
+from database.models.conversation import Conversation
 
 
 
@@ -30,7 +30,7 @@ class ConversationRepository:
             raise RuntimeError("Failed to retrieve the last inserted conversation ID.")
         return conversation_id
 
-    def get_conversation(self, conversation_id: int) -> tuple | None:
+    def get_conversation(self, conversation_id: int) -> Conversation | None:
         """
         Retrieves a conversation by its ID.
         """
@@ -40,9 +40,12 @@ class ConversationRepository:
         WHERE id = ?;
         """
         cursor = self.connection.execute(select_conversation_query, (conversation_id,))
-        return cursor.fetchone()
+        conversation_row = cursor.fetchone()
+        if conversation_row is None:
+            return None
+        return Conversation(*conversation_row)
 
-    def get_all_conversations(self) -> list[tuple]:
+    def get_all_conversations(self) -> list[Conversation]:
         """
         Retrieves all conversations.
         """
@@ -51,7 +54,7 @@ class ConversationRepository:
         FROM conversations;
         """
         cursor = self.connection.execute(select_all_conversations_query)
-        return cursor.fetchall()
+        return [Conversation(*row) for row in cursor.fetchall()]
 
     def update_conversation(self, conversation_id: int, title: str) -> bool:
         """
