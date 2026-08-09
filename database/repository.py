@@ -65,3 +65,15 @@ class ConversationRepository:
         cursor = self.connection.execute(update_conversation_query, (title, conversation_id))
         self.connection.commit()
         return cursor.rowcount > 0
+
+    def delete_conversation(self, conversation_id: int) -> bool:
+        """
+        Deletes a conversation by its ID.
+        """
+        delete_conversation_query = """
+        DELETE FROM conversations
+        WHERE id = ?;
+        """
+        cursor = self.connection.execute(delete_conversation_query, (conversation_id,))
+        self.connection.commit()
+        return cursor.rowcount > 0
