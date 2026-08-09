@@ -178,3 +178,22 @@ class MessageRepository:
             content=row[3],
             created_at=datetime.fromisoformat(row[4])
         )
+
+
+    def get_all_messages(self) -> list[Message]:
+        """
+        Retrieves all messages.
+        """
+
+        select_all_messages_query = """
+        SELECT *
+        FROM messages
+        ORDER BY created_at ASC;
+        """
+
+        cursor = self.connection.execute(select_all_messages_query)
+
+        return [
+            self._row_to_message(row)
+            for row in cursor.fetchall()
+        ]
