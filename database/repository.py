@@ -52,3 +52,16 @@ class ConversationRepository:
         """
         cursor = self.connection.execute(select_all_conversations_query)
         return cursor.fetchall()
+
+    def update_conversation(self, conversation_id: int, title: str) -> bool:
+        """
+        Updates a conversation's title.
+        """
+        update_conversation_query = """
+        UPDATE conversations
+        SET title = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?;
+        """
+        cursor = self.connection.execute(update_conversation_query, (title, conversation_id))
+        self.connection.commit()
+        return cursor.rowcount > 0
