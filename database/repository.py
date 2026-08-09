@@ -4,6 +4,7 @@ Database repositories for Jarvis AI.
 
 import sqlite3
 from database.models.conversation import Conversation
+from datetime import datetime
 
 
 
@@ -14,7 +15,7 @@ class ConversationRepository:
         """
         self.connection = connection
 
-    def create_conversation(self, title: str) -> int:
+    def create_conversation(self, title: str) -> Conversation:
         """
         Creates a new conversation.
         """
@@ -28,7 +29,11 @@ class ConversationRepository:
 
         if conversation_id is None:
             raise RuntimeError("Failed to retrieve the last inserted conversation ID.")
-        return conversation_id
+
+        conversation = self.get_conversation(conversation_id)
+        if conversation is None:
+            raise RuntimeError("Failed to retrieve the newly created conversation.")
+        return conversation
 
     def get_conversation(self, conversation_id: int) -> Conversation | None:
         """
@@ -43,7 +48,7 @@ class ConversationRepository:
         conversation_row = cursor.fetchone()
         if conversation_row is None:
             return None
-        return Conversation(*conversation_row)
+        return self._row_to_conversation(conversation_row)
 
     def get_all_conversations(self) -> list[Conversation]:
         """
@@ -54,7 +59,10 @@ class ConversationRepository:
         FROM conversations;
         """
         cursor = self.connection.execute(select_all_conversations_query)
-        return [Conversation(*row) for row in cursor.fetchall()]
+        return [
+            self._row_to_conversation(row)
+            for row in cursor.fetchall()
+        ]  
 
     def update_conversation(self, conversation_id: int, title: str) -> bool:
         """
@@ -80,3 +88,14 @@ class ConversationRepository:
         cursor = self.connection.execute(delete_conversation_query, (conversation_id,))
         self.connection.commit()
         return cursor.rowcount > 0
+
+    def _row_to_conversation(self, row: tuple) -> Conversation:
+        """
+        Converts a database row to a Conversation object.
+        """
+        return Conversation(
+            id=row[0],
+            title=row[1],
+            created_at=datetime.fromisoformat(row[2]),
+            updated_at=datetime.fromisoformat(row[3])
+        )
