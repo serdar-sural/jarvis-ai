@@ -3,9 +3,10 @@ Database repositories for Jarvis AI.
 """
 
 import sqlite3
-from database.models.conversation import Conversation
 from datetime import datetime
 
+from database.models.conversation import Conversation
+from database.models.message import Message
 
 
 class ConversationRepository:
@@ -98,4 +99,82 @@ class ConversationRepository:
             title=row[1],
             created_at=datetime.fromisoformat(row[2]),
             updated_at=datetime.fromisoformat(row[3])
+        )
+
+
+class MessageRepository:
+
+    def __init__(self, connection: sqlite3.Connection) -> None:
+        """
+        Initializes the repository with a database connection.
+        """
+        self.connection = connection
+
+    def create_message(
+        self,
+        conversation_id: int,
+        role: str,
+        content: str
+    ) -> Message:
+        """
+        Creates a new message.
+        """
+        insert_message_query = """
+        INSERT INTO messages (conversation_id, role, content)
+        VALUES (?, ?, ?);
+        """
+
+        cursor = self.connection.execute(
+            insert_message_query,
+            (conversation_id, role, content)
+        )
+        self.connection.commit()
+
+        message_id = cursor.lastrowid
+
+        if message_id is None:
+            raise RuntimeError(
+                "Failed to retrieve the last inserted message ID."
+            )
+        message = self.get_message(message_id)
+        if message is None:
+            raise RuntimeError(
+                "Failed to retrieve the newly created message."
+            )
+        return message
+
+    def get_message(self, message_id: int) -> Message | None:
+        """
+        Retrieves a message by its ID.
+        """
+
+        select_message_query = """
+        SELECT *
+        FROM messages
+        WHERE id = ?;
+        """
+
+        cursor = self.connection.execute(
+            select_message_query,
+            (message_id,)
+        )
+
+        message_row = cursor.fetchone()
+
+        if message_row is None:
+            return None
+
+        return self._row_to_message(message_row)
+
+    def _row_to_message(self, row: tuple) -> Message:
+        """
+        Converts a database row to a Message object.
+        """
+
+        return Message(
+            id=row[0],
+            conversation_id=row[1],
+            role=row[2],
+            content=row[3],
+            created_at=datetime.fromisoformat(row[4])
         )
