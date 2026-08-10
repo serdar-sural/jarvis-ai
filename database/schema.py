@@ -43,6 +43,7 @@ def create_messages_table(connection: sqlite3.Connection) -> None:
         role TEXT NOT NULL,
         content TEXT NOT NULL,
         created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (conversation_id) REFERENCES conversations (id) ON DELETE CASCADE
     );
     """

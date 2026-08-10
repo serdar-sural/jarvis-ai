@@ -16,3 +16,4 @@ class Message:
     role: str
     content: str
     created_at: datetime
+    updated_at: datetime

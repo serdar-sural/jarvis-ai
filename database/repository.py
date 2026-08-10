@@ -176,7 +176,8 @@ class MessageRepository:
             conversation_id=row[1],
             role=row[2],
             content=row[3],
-            created_at=datetime.fromisoformat(row[4])
+            created_at=datetime.fromisoformat(row[4]),
+            updated_at=datetime.fromisoformat(row[5])
         )
 
 
@@ -219,6 +220,25 @@ class MessageRepository:
             self._row_to_message(row)
             for row in cursor.fetchall()
         ]
+
+    def update_message(self, message_id: int, content: str) -> bool:
+        """
+        Updates a message's content.
+        """
+
+        update_message_query = """
+        UPDATE messages
+        SET content = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?;
+        """
+
+        cursor = self.connection.execute(
+            update_message_query,
+            (content, message_id)
+        )
+        self.connection.commit()
+
+        return cursor.rowcount > 0
 
     def delete_message(self, message_id: int) -> bool:
         """
