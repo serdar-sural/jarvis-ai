@@ -219,3 +219,21 @@ class MessageRepository:
             self._row_to_message(row)
             for row in cursor.fetchall()
         ]
+
+    def delete_message(self, message_id: int) -> bool:
+        """
+        Deletes a message by its ID.
+        """
+
+        delete_message_query = """
+        DELETE FROM messages
+        WHERE id = ?;
+        """
+
+        cursor = self.connection.execute(
+            delete_message_query,
+            (message_id,)
+        )
+        self.connection.commit()
+
+        return cursor.rowcount > 0
