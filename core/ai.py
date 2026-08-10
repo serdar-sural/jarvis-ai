@@ -27,6 +27,7 @@ def initialize_ai():
     
 
 def generate_response(chat_message):
+    assert client is not None
     add_message("user", chat_message)
     try:
         response = client.chat.completions.create(
