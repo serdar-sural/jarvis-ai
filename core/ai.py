@@ -55,3 +55,24 @@ def add_message(role, content):
         "role": role, 
         "content": content
         })
+
+def clear_messages():
+    """
+    Clears the current AI conversation history    
+    """
+    messages.clear()
+
+def load_messages(chat_messages):
+    """
+    Loads existing messages into the current AI conversation history
+    """
+    clear_messages()
+
+    system_prompt = get_system_prompt()
+    add_message("system", system_prompt)
+
+    for message in chat_messages:
+        add_message(
+            message.role,
+            message.content
+        )
