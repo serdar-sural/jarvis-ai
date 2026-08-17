@@ -8,11 +8,50 @@ The project follows **Semantic Versioning** and uses the **Keep a Changelog** fo
 
 ## [Unreleased]
 
-### Documentation
+No changes yet.
 
-- Updated README to reflect the current project architecture.
-- Improved project documentation.
-- Updated roadmap and project structure.
+---
+
+## [0.3.0] - 2026-08-17
+
+### Added
+
+- SQLite database foundation
+- Database connection management
+- Database schema initialization
+- Conversation model
+- Message model
+- Conversation repository
+- Message repository
+- Conversation CRUD operations
+- Message CRUD operations
+- Conversation service
+- Message service
+- Persistent conversation history
+- Conversation selection
+- AI conversation context restoration
+- Conversation history loading after application restart
+- Message creation and update support
+- `created_at` and `updated_at` timestamps for conversations and messages
+- Database `.db` files excluded from version control
+- Chat integration with the database and service layers
+
+### Changed
+
+- Integrated the chat module with the conversation and message services.
+- Replaced temporary runtime-only conversation context with persistent database-backed conversation history.
+- Added loading of stored messages into the AI conversation context.
+- Updated the chat flow to allow selecting existing conversations.
+- Separated database access through repository and service layers.
+- Improved application architecture by introducing a clear Database → Repository → Service → Chat flow.
+- Updated the `.gitignore` configuration for SQLite databases.
+
+### Fixed
+
+- Fixed message timestamp handling by using `updated_at` when updating existing messages.
+- Fixed conversation history restoration after restarting the application.
+- Fixed message and conversation persistence across application sessions.
+- Fixed conversation selection and message loading for existing conversations.
 
 ---
 
@@ -39,9 +78,9 @@ The project follows **Semantic Versioning** and uses the **Keep a Changelog** fo
 - Improved project architecture by separating prompts and configuration.
 - Replaced relative prompt paths with `pathlib` for reliable file loading.
 - Improved overall project maintainability.
-- Replaced console print statements with the custom logger
-- Improved the configuration package structure
-- Added module documentation for configuration modules
+- Replaced console print statements with the custom logger.
+- Improved the configuration package structure.
+- Added module documentation for configuration modules.
 
 ### Fixed
 
