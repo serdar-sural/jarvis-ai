@@ -1,6 +1,6 @@
 import chat.chat as chat
 
-def start():
+def start(conversation_service, message_service):
     show_logo()
     show_loading_screen()
 
@@ -13,7 +13,7 @@ def start():
     while running:
         show_main_menu()
         choice = get_menu_choice()
-        running = process_menu_choice(choice, name)
+        running = process_menu_choice(choice, name, conversation_service, message_service)
 
 
 def show_logo():
@@ -51,9 +51,9 @@ def get_menu_choice():
         choice = input("Bitte wählen Sie eine Option (1-4): ")
     return choice
 
-def process_menu_choice(choice, name):
+def process_menu_choice(choice, name, conversation_service, message_service):
     if choice == "1":
-        chat.start_chat(name)
+        chat.start_chat(name, conversation_service, message_service)
         return True
     elif choice == "2":
         print("Öffne Rechner...")

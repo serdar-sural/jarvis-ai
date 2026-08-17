@@ -8,7 +8,7 @@ The roadmap provides an overview of completed milestones, current priorities, an
 
 # Current Version
 
-**Version:** 0.2.0
+**Version:** 0.3.0
 
 **Status:** Active Development
 
@@ -22,6 +22,7 @@ The roadmap provides an overview of completed milestones, current priorities, an
 - Modular architecture
 - OpenAI API integration
 - Runtime conversation memory
+- Persistent conversation history
 - AI core module
 - Chat module
 - Startup module
@@ -34,6 +35,25 @@ The roadmap provides an overview of completed milestones, current priorities, an
 
 ---
 
+## Database
+
+- SQLite database foundation
+- Database connection management
+- Database schema initialization
+- Conversation model
+- Message model
+- Conversation repository
+- Message repository
+- Conversation CRUD operations
+- Message CRUD operations
+- Conversation and message services
+- Conversation and message persistence
+- Conversation selection
+- Persistent AI conversation context
+- Conversation history restoration after application restart
+
+---
+
 ## Architecture
 
 - External system prompt
@@ -43,6 +63,9 @@ The roadmap provides an overview of completed milestones, current priorities, an
 - Dedicated `config` directory
 - Reliable prompt loading using `pathlib`
 - Separation of Concerns
+- Service layer
+- Repository layer
+- Database abstraction
 
 ---
 
@@ -54,6 +77,7 @@ The roadmap provides an overview of completed milestones, current priorities, an
 - Pull Request workflow
 - Code review process
 - Documentation workflow
+- Structured commit history
 
 ---
 
@@ -71,9 +95,10 @@ The following features are planned for the next development phase.
 
 ## Memory
 
-- Persistent conversation history
 - Long-term AI memory
-- Conversation management
+- Advanced conversation management
+- Memory optimization
+- Context management
 
 ---
 
@@ -89,10 +114,10 @@ The following features are planned for the next development phase.
 
 ## Data
 
-- Database integration
-- Local data storage
 - Configuration persistence
 - User profiles
+- Data management improvements
+- Database migration strategy
 
 ---
 
@@ -102,17 +127,7 @@ The following features are planned for the next development phase.
 - Login system
 - Session management
 - Access control
-
----
-
-## Deployment
-
-- Desktop application
-- Web application
-- REST API
-- Docker support
-- Cloud deployment
-- Domain integration
+- Secure credential management
 
 ---
 
@@ -123,6 +138,17 @@ The following features are planned for the next development phase.
 - Plugin architecture
 - API documentation
 - Code quality improvements
+
+---
+
+## AI Capabilities
+
+- Tool integration
+- Web search capabilities
+- External API integration
+- Real-time information access
+- AI tool calling
+- Agent-based workflows
 
 ---
 
@@ -143,6 +169,8 @@ The long-term vision includes:
 - AI Memory
 - Plugin System
 - Voice Assistant
+- Tool Calling
+- Web and API Integration
 - Continuous Learning
 
 ---

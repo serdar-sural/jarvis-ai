@@ -1,13 +1,13 @@
 # Jarvis AI
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
-![Version](https://img.shields.io/badge/Version-0.2.0-brightgreen)
+![Version](https://img.shields.io/badge/Version-0.3.0-brightgreen)
 ![Status](https://img.shields.io/badge/Status-Active_Development-orange)
 ![Architecture](https://img.shields.io/badge/Architecture-Modular-blueviolet)
 ![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?logo=openai&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-A modular AI assistant built with Python and OpenAI, focusing on clean architecture, maintainability, and professional software engineering practices.
+A modular AI assistant built with Python and OpenAI, focusing on clean architecture, maintainability, persistence, and professional software engineering practices.
 
 Jarvis AI is a long-term software engineering and AI engineering learning project. Rather than only building an intelligent assistant, the project focuses on understanding how professional software is designed, structured, tested, documented, and continuously improved.
 
@@ -32,11 +32,12 @@ The primary goals of this project are:
 
 | Property | Value |
 |-----------|-------|
-| Version | **0.2.0** |
+| Version | **0.3.0** |
 | Status | **Active Development** |
 | Language | **Python** |
 | Architecture | **Modular** |
 | AI Provider | **OpenAI** |
+| Database | **SQLite** |
 | License | **MIT (planned)** |
 
 ---
@@ -48,6 +49,17 @@ Current features include:
 - Modular project architecture
 - OpenAI Chat Completions integration
 - Runtime conversation memory
+- Persistent conversation history
+- Conversation selection
+- AI conversation context restoration
+- Conversation history restoration after application restart
+- SQLite database integration
+- Conversation and message persistence
+- Conversation CRUD operations
+- Message CRUD operations
+- Conversation service
+- Message service
+- Repository layer
 - External system prompt
 - Prompt loader
 - Centralized settings module
@@ -59,7 +71,6 @@ Current features include:
 - Git version control
 - Feature branch workflow
 - Clean and maintainable codebase
-- Centralized logging system
 - Automatic log directory creation
 - Timestamped log entries
 
@@ -71,25 +82,53 @@ Current features include:
 Jarvis_AI/
 │
 ├── assets/
+│
 ├── chat/
+│   ├── __init__.py
 │   └── chat.py
+│
 ├── config/
+│   ├── __init__.py
 │   └── settings.py
+│
 ├── core/
+│   ├── __init__.py
 │   ├── ai.py
-|   └── prompt_loader.py
+│   ├── logger.py
+│   └── prompt_loader.py
+│
+├── database/
+│   ├── __init__.py
+│   ├── database.py
+│   ├── repository.py
+│   └── models/
+│       ├── __init__.py
+│       ├── conversation.py
+│       └── message.py
+│
 ├── data/
+│
 ├── logs/
 │   └── .gitkeep
+│
 ├── prompts/
 │   └── system_prompt.md
+│
+├── services/
+│   ├── __init__.py
+│   ├── conversation_service.py
+│   └── message_service.py
+│
 ├── ui/
+│   ├── __init__.py
 │   └── startup.py
+│
 ├── .gitignore
-├── README.md
 ├── CHANGELOG.md
+├── README.md
 ├── ROADMAP.md
-└── main.py
+├── main.py
+└── requirements.txt
 ```
 
 ## Directory Overview
@@ -97,14 +136,16 @@ Jarvis_AI/
 | Folder | Description |
 |---------|-------------|
 | **assets** | Images, icons and future project resources |
-| **chat** | Handles the chat loop and user interaction |
+| **chat** | Handles the chat loop, conversation selection, and user interaction |
 | **config** | Global application settings |
-| **core** | Core AI logic and OpenAI communication |
-| **data** | Future application data and storage |
+| **core** | Core AI logic, OpenAI communication, logging, and prompt loading |
+| **database** | Database connection, repositories, and data models |
+| **data** | Local application data and SQLite database storage |
+| **logs** | Application log files generated during runtime |
 | **prompts** | External AI prompt files |
+| **services** | Application services that coordinate business logic |
 | **ui** | Startup process and future user interface |
 | **main.py** | Application entry point |
-| **logs** | Application log files generated during runtime |
 
 ---
 
@@ -112,14 +153,40 @@ Jarvis_AI/
 
 Jarvis AI follows the principle of **Separation of Concerns**.
 
-Each module has a single responsibility:
+The current architecture is organized into several layers:
 
-- **chat** handles user interaction.
-- **core** contains AI logic.
+```text
+UI
+ ↓
+Chat
+ ↓
+Services
+ ↓
+Repositories
+ ↓
+Database
+```
+
+The AI layer works alongside the application flow:
+
+```text
+Chat
+ ↓
+AI Core
+ ↓
+OpenAI API
+```
+
+Each module has a specific responsibility:
+
+- **chat** handles user interaction and conversation flow.
+- **core** contains AI logic, OpenAI communication, logging, and prompt loading.
 - **config** stores application settings.
 - **prompts** contains external AI prompts.
-- **ui** manages the user interface.
-- **data** is reserved for persistent storage.
+- **services** contains application and business logic.
+- **database** handles persistence through repositories and models.
+- **ui** manages the startup process and user interface.
+- **data** contains local application data and database storage.
 
 This modular architecture keeps the project maintainable, scalable, and easy to extend.
 
@@ -131,6 +198,7 @@ Current technologies:
 
 - Python
 - OpenAI API
+- SQLite
 - python-dotenv
 - Git
 - GitHub
@@ -175,9 +243,13 @@ python main.py
 
 # Usage
 
-After starting the application, Jarvis initializes the OpenAI client, loads the external system prompt, applies the application settings, and starts an interactive chat session.
+After starting the application, Jarvis initializes the OpenAI client, loads the external system prompt, applies the application settings, and starts the interactive application.
 
-Conversation history is stored during runtime and continuously provided to the AI model.
+Users can select an existing conversation and continue the conversation from its stored history.
+
+Conversation messages are stored persistently in the local SQLite database and loaded back into the AI context when a conversation is selected.
+
+This allows Jarvis to retain conversation context even after the application has been restarted.
 
 ---
 
@@ -204,9 +276,13 @@ This workflow keeps the project clean, maintainable, and easy to follow.
 
 Upcoming major milestones include:
 
-- Persistent conversation history
 - Long-term AI memory
-- Database integration
+- Advanced conversation management
+- Improved error handling
+- Multiple AI model support
+- Tool integration
+- Web search capabilities
+- External API integration
 - User authentication
 - Desktop application
 - Web application
